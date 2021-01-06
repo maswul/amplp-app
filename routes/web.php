@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('auth')->prefix('aset')->group(function(){
+    Route::get('dashboard', function () {
+        return view('Asets.home');
+    })->middleware('can:isBoleh')->name('aset.home');
+});

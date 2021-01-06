@@ -15,9 +15,12 @@
         "jeroennoten/laravel-adminlte": "dev-add-x-components",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.1"
+        "laravel/ui": "^3.1",
+        "livewire/livewire": "^2.3",
+        "rappasoft/laravel-livewire-tables": "^0.3.3"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.9",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
