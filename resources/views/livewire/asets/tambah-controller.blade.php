@@ -36,14 +36,14 @@
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label>Nama Asets:</label>
-                                <input type="text" class="form-control" name="name" wire:model.lazy="name">
+                                <input type="text" required class="form-control" name="name" wire:model.lazy="name">
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label>Detail Asets:</label>
-                                <textarea name="detail" wire:model.lazy="detail" id="" class="form-control"
+                                <textarea name="detail" required wire:model.lazy="detail" id="" class="form-control"
                                           rows="3"></textarea>
                             </div>
                         </div>
@@ -52,24 +52,35 @@
                                 <div class="col-md-6">
                                     <label for="">Kategori <a @click="open=true"><i
                                                 class="fa fa-plus-circle"></i></a></label>
-                                    <select class="form-control" name="kategori_id"
+                                    <select class="form-control" name="kategori_id" required
                                             wire:model.lazy="kategori_id">
-                                        <option value="" selected="selected">-- Silahkan pilih Kategori --</option>
+                                        <option value="-1" >-- Silahkan pilih Kategori --</option>
                                         @foreach($kategoris as $item)
-                                            <option
-                                                value="{{ $item->id }}">{{ $item->name }}
+                                            <option wire:key="$item->id" value="{{$item->id}}">{{ $item->name }}
                                             </option>
                                         @endforeach
                                     </select>
 
                                 </div>
+                                <div class="col-md-6">
+                                    <label for="">PIC</label>
+                                    <select wire:model.lazy="pic_id" class="form-control" required>
+                                        <option value="-1" >-- Pilih PIC --</option>
+                                        @foreach($pics as $pic)
+                                            <option wire:key="$pic->id" value="{{$pic->id}}" >{{$pic->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="row form-group" x-show="open" @click.away="open=false">
                                 <div class="col-md-10">
-                                    <input type="text" wire:model.lazy="kategori_name" class="form-control" placeholder="Kategori baru">
+                                    <input type="text" wire:model.lazy="kategori_name" class="form-control"
+                                           placeholder="Kategori baru">
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="btn btn-success" @click="open=false" wire:click.prevent="addKategori()">Tambah</button>
+                                    <button class="btn btn-success" @click="open=false"
+                                            wire:click.prevent="addKategori()">Tambah
+                                    </button>
 
                                 </div>
                             </div>
@@ -79,12 +90,12 @@
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label for="">Lokasi Penyimpanan </label>
-                                <input type="text" name="lokasi_simpan" wire:model.lazy="lokasi_simpan"
+                                <input type="text" required name="lokasi_simpan" wire:model.lazy="lokasi_simpan"
                                        class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Tanggal Beli</label>
-                                <input type="date" class="form-control" wire:model.lazy="tgl_beli" name="tgl_beli">
+                                <input type="date" required class="form-control" wire:model.lazy="tgl_beli" name="tgl_beli">
                             </div>
                         </div>
 

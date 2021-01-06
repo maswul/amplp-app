@@ -13,7 +13,7 @@ class AsetsTable extends TableComponent
 {
     use HtmlComponents;
 
-    protected $listeners=['FilterTahun'=>'filterTahun', 'FilterKategori'];
+    protected $listeners=['FilterTahun'=>'filterTahun', 'FilterKategori', 'AsetsRefresh' => '$refresh'];
     public $tahun = '';
     public $kategori = '';
 
@@ -68,6 +68,9 @@ class AsetsTable extends TableComponent
                 return $model->pic_name;
             }),
             Column::make('Lokasi', 'lokasi_simpan')->sortable()->searchable(),
+            Column::make('Aksi')->format(function(Asets $model){
+                return view('livewire.asets.table-aksi',['model'=>$model]);
+            })
         ];
     }
 }
