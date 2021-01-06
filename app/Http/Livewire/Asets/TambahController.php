@@ -10,7 +10,8 @@ use Livewire\Component;
 class TambahController extends Component
 {
 
-    public $asets_id,$kategori_name, $kategoris, $name, $nomor, $detail, $kategori_id, $tgl_beli, $lokasi_simpan, $pic_id, $dipinjam, $peminjam_id;
+    public $asets_id,$kategori_name, $kategoris, $name, $nomor, $detail, $tgl_beli, $lokasi_simpan, $pic_id, $dipinjam, $peminjam_id;
+    public $kategori_id = [];
     public $editMode = false;
 
     protected function resetFields()
@@ -19,7 +20,7 @@ class TambahController extends Component
         $this->name = '';
         $this->nomor='';
         $this->detail='';
-        $this->kategori_id='';
+        $this->kategori_id=[];
         $this->tgl_beli='';
         $this->lokasi_simpan='';
         $this->pic_id=0;
@@ -32,8 +33,10 @@ class TambahController extends Component
 
     public function addKategori()
     {
-        AsetsKategori::updateOrCreate(["name"=>$this->kategori_name],["name"=>$this->kategori_name]);
-        $this->kategoris = AsetsKategori::get();
+        if ($this->kategori_name) {
+            AsetsKategori::updateOrCreate(["name" => $this->kategori_name], ["name" => $this->kategori_name]);
+            $this->kategoris = AsetsKategori::get();
+        }
     }
 
     public function store()
@@ -44,8 +47,9 @@ class TambahController extends Component
             'nomor' => $this->nomor,
             'detail' => $this->detail,
             'tgl_beli' => $this->tgl_beli,
+            'tahun' => Carbon::createFromDate($this->tgl_beli)->isoFormat("YYYY"),
             'lokasi_simpan' => $this->lokasi_simpan,
-            'kategori_id' => $this->kategori_id,
+            'kategori_id'=>$this->kategori_id,
             'dipinjam'=>false,
 
         ]);
@@ -60,9 +64,14 @@ class TambahController extends Component
 
     }
 
-    public function render()
+    public function mount()
     {
         $this->resetFields();
+    }
+
+    public function render()
+    {
+
         return view('livewire.asets.tambah-controller');
     }
 }

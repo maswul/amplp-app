@@ -22,6 +22,7 @@ namespace App\Models{
  * @property string|null $detail
  * @property int|null $kategori_id
  * @property string|null $tgl_beli
+ * @property int $tahun
  * @property string|null $lokasi_simpan
  * @property int|null $pic_id
  * @property bool|null $dipinjam
@@ -42,6 +43,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Asets whereNomor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Asets wherePeminjamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Asets wherePicId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Asets whereTahun($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Asets whereTglBeli($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Asets whereUpdatedAt($value)
  */

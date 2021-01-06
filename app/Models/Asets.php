@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\AsetsKategori;
+use Carbon\Carbon;
 
 class Asets extends Model
 {
@@ -32,4 +33,5 @@ class Asets extends Model
     {
         return AsetsKategori::where('id', '=',$this->kategori_id)->first()->name;
     }
+
 }
